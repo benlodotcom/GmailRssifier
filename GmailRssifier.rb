@@ -5,7 +5,7 @@ require 'sinatra'
 require 'builder'
 require 'mail'
 
-class GmailToRss < Sinatra::Base
+class GmailRssifier < Sinatra::Base
 
   # Configuration loading from the conf.yml file
   CONF = YAML.load_file('conf.yml') 

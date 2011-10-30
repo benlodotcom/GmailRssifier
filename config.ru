@@ -3,5 +3,5 @@ require 'bundler'
 
 Bundler.require
 
-require './GmailToRss'
-run GmailToRss
+require './GmailRssifier'
+run GmailRssifier
