@@ -8,8 +8,6 @@ xml.rss :version => "2.0" do
         xml.title mail.subject
         xml.description mail.body  
         xml.pubDate mail.date.rfc822()
-        #xml.link ""#post_url(post)
-        #xml.guid ""#post_url(post)
       end
     end
   end

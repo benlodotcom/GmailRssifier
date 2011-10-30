@@ -1,0 +1,14 @@
+# Parameters of the gmail account you use for newsletters
+gmail_username: 'your_username'
+gmail_password: 'your_password' 
+
+# This set the correspondances between the abreviated name used 
+# in the url for a feed and the name of the label in gmail
+# every feed configured will be available using the url pattern:
+# http://yourdomain/feed/abbreviatedname
+feeds:
+  abbreviatedname: 'label name'
+  iosweekly: 'iOS Dev Weekly' 
+  
+# Number of emails browsed for each label
+email_count: 10
