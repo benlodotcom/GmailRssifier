@@ -10,7 +10,7 @@ class GmailRssifier < Sinatra::Base
   # Configuration loading from the conf.yml file
   CONF = YAML.load_file('conf/conf.yml') 
 
-  def get_email(feed_abbreviated_name) 
+  def get_email(feed_name) 
 
     # Connect to gmail
     gmail = Gmail.new(CONF['gmail_username'], CONF['gmail_password'])
@@ -18,7 +18,7 @@ class GmailRssifier < Sinatra::Base
     returnedEmails = Array.new()  
 
     # Get the first n emails for a certain label and copy them in an array
-    gmail.mailbox(CONF['feeds'][feed_abbreviated_name]).emails.take(CONF['email_count']).each do |email| 
+    gmail.mailbox(feed_name).emails.take(CONF['email_count']).each do |email| 
       
       emailCopy = Mail.new do
         subject email.subject
@@ -37,9 +37,14 @@ class GmailRssifier < Sinatra::Base
   end
 
   get '/feed/:feed_abbreviated_name' do
-    # builder parameters
-    @feed_name = CONF['feeds'][params[:feed_abbreviated_name]]
-    @mails = get_email(params[:feed_abbreviated_name]) 
+    # Tries to match the feed_abbreviated_name with one specified in conf.yml
+    # if it finds one, load the content for the associated label
+    # otherwise fall back to loading the content of a label having the same name as the abbreviated name
+    feed_name = CONF['feeds'][params[:feed_abbreviated_name]]
+    feed_name = feed_name ? feed_name : params[:feed_abbreviated_name]
+    # builder parameters 
+    @feed_name = feed_name
+    @mails = get_email(@feed_name) 
     # response
     content_type 'application/rss+xml'
     builder :feed 

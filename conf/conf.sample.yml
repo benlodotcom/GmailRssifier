@@ -2,13 +2,16 @@
 gmail_username: 'your_username'
 gmail_password: 'your_password' 
 
-# This set the correspondances between the abreviated name used 
-# in the url for a feed and the name of the label in gmail
-# every feed configured will be available using the url pattern:
-# http://yourdomain/feed/abbreviatedname
+# "Routes" used to access different labels
+# The route abbreviatedname: 'label name' allows you to access the RSS feed for the 
+# label named 'label name' using the URL http://domain:port/abbreviatedname
+# A label can also be access without specifying a route for it using the url http://domain:port/labelname
+# 
+# For instance to access the label Inbox of your gmail account, you can both:
+#   - Specify a route in: 'inbox' and use the url http://domain:port/in
+#   - Simply use the url http://domain:port/Inbox (Capitalization matters)
 feeds:
-  abbreviatedname: 'label name'
-  iosweekly: 'iOS Dev Weekly' 
+  #abbreviatedname: 'label name'
   
 # Number of emails browsed for each label
 email_count: 10
