@@ -13,6 +13,7 @@ GmailRssifier was created because I was willing to read my newsletters in my fav
 
 ## Start it
 
+* ``gem install bundler`` if you don't have it yet.
 * ``bundle install`` to get the required dependencies.
 * ``rackup`` to startup the application.              
 * You can now access your RSS feeds through ``http://yourdomain:port/feed/feed_abreviated_name``

@@ -8,7 +8,7 @@ gmail_password: 'your_password'
 # A label can also be access without specifying a route for it using the url http://domain:port/labelname
 # 
 # For instance to access the label Inbox of your gmail account, you can both:
-#   - Specify a route in: 'inbox' and use the url http://domain:port/in
+#   - Specify a route box: 'inbox' and use the url http://domain:port/box
 #   - Simply use the url http://domain:port/Inbox (Capitalization matters)
 feeds:
   #abbreviatedname: 'label name'
