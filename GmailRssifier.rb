@@ -19,14 +19,14 @@ class GmailRssifier < Sinatra::Base
 
     # Get the first n emails for a certain label and copy them in an array
     gmail.mailbox(feed_name).emails.take(CONF['email_count']).each do |email| 
-      
-      emailCopy = Mail.new do
-        subject email.subject
-        body  email.content_body.to_s
-        date  email.date 
-      end 
-      
-      returnedEmails << emailCopy 
+
+      emailData = {
+        :subject => email.subject,
+        :body => email.content_body.to_s
+        :date => email.date        
+      }
+
+      returnedEmails << emailData
     end
 
     # Disconnect from gmail
