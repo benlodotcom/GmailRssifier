@@ -30,5 +30,6 @@ PLATFORMS
 
 DEPENDENCIES
   builder
+  mail
   purp-ruby-gmail
   sinatra

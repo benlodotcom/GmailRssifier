@@ -19,10 +19,13 @@ class GmailRssifier < Sinatra::Base
 
     # Get the first n emails for a certain label and copy them in an array
     gmail.mailbox(feed_name).emails.take(CONF['email_count']).each do |email| 
-
+      
+      content_part = email.content_part
       emailData = {
         :subject => email.subject,
-        :body => email.content_body.to_s
+        # The mail library returns wrong encodings, workaround to solve the problem
+        # Might be solved with future releases of the mail library
+        :body => email.content_part.body.to_s.force_encoding(email.content_part.charset),
         :date => email.date        
       }
 
@@ -52,15 +55,15 @@ class GmailRssifier < Sinatra::Base
 
 end
 
-# Monkey patching of the Message class so that it returns the body
-# of the content part of the email
+# Monkey patching of the Message class so that it returns
+# the content part of the email
 class Mail::Message
-
-  def content_body
+  
+  def content_part 
     if self.multipart?
-      body = self.html_part ? self.html_part.body : self.text_part.body
+      self.html_part ? self.html_part : self.text_part 
     else
-      body = self.body                 
+      self                
     end
   end
 
