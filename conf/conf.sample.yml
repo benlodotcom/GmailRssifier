@@ -13,5 +13,6 @@ gmail_password: 'your_password'
 feeds:
   #abbreviatedname: 'label name'
   
-# Number of emails browsed for each label
-email_count: 10
+# To avoid retrieving a large number of emails GmailRssifier only retrieves emails that were 
+# received in your gmail inbox at most nb_day before the day GmailRSSifier is executed.
+nb_days: 10
