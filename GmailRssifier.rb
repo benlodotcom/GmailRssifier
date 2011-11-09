@@ -43,10 +43,11 @@ class GmailRssifier < Sinatra::Base
     # Tries to match the feed_abbreviated_name with one specified in conf.yml
     # if it finds one, load the content for the associated label
     # otherwise fall back to loading the content of a label having the same name as the abbreviated name
-    feed_name = CONF['feeds'][params[:feed_abbreviated_name]]
-    feed_name = feed_name ? feed_name : params[:feed_abbreviated_name]
+    feed_name = CONF['feeds'] ? CONF['feeds'][params[:feed_abbreviated_name]] : nil
+    feed_name = feed_name ? feed_name : params[:feed_abbreviated_name] 
     # builder parameters 
     @feed_name = feed_name
+    @feed_url = request.url
     @mails = get_email(@feed_name) 
     # response
     content_type 'application/rss+xml'
