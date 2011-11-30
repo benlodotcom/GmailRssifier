@@ -7,6 +7,7 @@ xml.rss :version => "2.0" do
     
     for mail in @mails
       xml.item do
+        xml.guid  mail[:subject] + ' - ' + mail[:date].rfc822(), :isPermaLink => "false" 
         xml.title mail[:subject]
         xml.description mail[:body]  
         xml.pubDate mail[:date].rfc822()
